@@ -1,1 +1,40 @@
+#include <iostream>
 
+using namespace std;
+
+int main() {
+    int marks[10][5], total[10] = {0};
+    float average[10];
+
+    for (int i = 0; i < 10; i++) {
+        cout << "Enter marks for Student " << i + 1 << ":\n";
+        for (int j = 0; j < 5; j++) {
+            cout << "Subject " << j + 1 << ": ";
+            cin >> marks[i][j];
+            total[i] += marks[i][j];
+        }
+        average[i] = total[i] / 5.0;
+    }
+
+    int topIndex = 0;
+    for (int i = 1; i < 10; i++) {
+        if (total[i] > total[topIndex]) {
+            topIndex = i;
+        }
+    }
+
+    cout << "\nResults:\n";
+    for (int i = 0; i < 10; i++) {
+        cout << "Student " << i + 1 << " - Total: " << total[i] << ", Average: " << average[i] 
+             << ", Grade: ";
+        if (average[i] >= 90) cout << "A";
+        else if (average[i] >= 75) cout << "B";
+        else if (average[i] >= 50) cout << "C";
+        else cout << "F";
+        cout << "\n";
+    }
+
+    cout << "\nTop Scorer: Student " << topIndex + 1 << " with total marks: " << total[topIndex] << "\n";
+
+    return 0;
+}
